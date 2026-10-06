@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>rycpot</title>
+  <meta name="description" content="Browser extensions, small web tools and a Mac app by rycpot.">
+  <style>
+    :root { --bg: #fbfaf6; --card: #ffffff; --text: #1d1f1a; --muted: #5d6356; --line: #e4e6dc; --accent: #4f7a28; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #121411; --card: #1a1d18; --text: #e9ece4; --muted: #a2a99a; --line: #2b3027; --accent: #a4d46a; }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    main { max-width: 760px; margin: 0 auto; padding: 56px 16px 64px; }
+    h1 { margin: 0; font-size: 32px; line-height: 1.15; letter-spacing: -.01em; }
+    .intro { margin: 6px 0 0; color: var(--muted); }
+    h2 { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 40px 0 12px; }
+    ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+    li { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+    li b { display: block; font-size: 17px; }
+    li p { margin: 2px 0 8px; color: var(--muted); font-size: 15px; }
+    .links { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 14.5px; }
+    a { color: var(--accent); }
+    footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>rycpot</h1>
+  <p class="intro">Browser extensions, small web tools and a Mac app.</p>
+
+  <h2>Chrome extensions</h2>
+  <ul>
+    <li><b>Extra Guac</b>
+      <p>Twenty tools for the page you're on, in one side panel: screenshots, text from image, privacy blur, dark mode, auto-refresh and more.</p>
+      <div class="links"><a href="extra-guac/">Homepage</a><a href="https://chromewebstore.google.com/detail/extra-guac/kgaeicakljpjmpeacalbmfbcmlpploni">Chrome Web Store</a><a href="extra-guac/privacy">Privacy policy</a></div></li>
+    <li><b>QuickUp</b>
+      <p>Right-click any image to upload it to Catbox, X02 or ImgLink and get the link.</p>
+      <div class="links"><a href="quickup">Privacy policy</a></div></li>
+    <li><b>Unread Mail &amp; File Hosting</b>
+      <p>Unread mail from Gmail, Outlook, iCloud, Yahoo and AOL in one tab: read, mark and delete without opening webmail.</p>
+      <div class="links"><a href="Unread-Mail_File-Hosting/">Homepage</a><a href="https://github.com/rycpot/Unread-Mail_File-Hosting">Source</a></div></li>
+    <li><b>Minimal Spreadsheet, Text &amp; Design Editor</b>
+      <p>A simple offline editor for spreadsheets, text and code files, and quick image designs, right in the browser.</p>
+      <div class="links"><a href="https://github.com/rycpot/Minimal-Spreadsheet-Text-Design-Editor">Source</a></div></li>
+  </ul>
+
+  <h2>Web tools</h2>
+  <ul>
+    <li><b>SRT Drift Corrector</b>
+      <p>Fixes subtitles that slowly drift out of sync, using two reference points. One HTML file.</p>
+      <div class="links"><a href="SRT-Drift-Corrector/">Open</a><a href="https://github.com/rycpot/SRT-Drift-Corrector">Source</a></div></li>
+    <li><b>WIF converter</b>
+      <p>Converts a hex private key to WIF and shows its addresses for Bitcoin, Litecoin, Dogecoin and Dash. Works offline.</p>
+      <div class="links"><a href="wif-converter/">Open</a><a href="https://github.com/rycpot/wif-converter">Source</a></div></li>
+    <li><b>Userscripts</b>
+      <p>Small fixes for Reddit, YouTube, Google Images, Instagram and AI chats, for Tampermonkey or Violentmonkey.</p>
+      <div class="links"><a href="https://github.com/rycpot/userscripts-public">Install</a></div></li>
+    <li><b>History Backup Worker</b>
+      <p>A Cloudflare Worker that backs up browsing history to an R2 bucket in your own Cloudflare account.</p>
+      <div class="links"><a href="https://github.com/rycpot/history-backup-worker">Source</a></div></li>
+  </ul>
+
+  <h2>Mac app</h2>
+  <ul>
+    <li><b>English Subtitles Generator, Cut &amp; Join Videos</b>
+      <p>English subtitles for foreign-language movies, a frame-exact cutter and a joiner, in one small app.</p>
+      <div class="links"><a href="https://github.com/rycpot/english-subtitles-generator-cut-join-videos">Source &amp; download</a></div></li>
+  </ul>
+
+  <footer><a href="https://github.com/rycpot">github.com/rycpot</a></footer>
+</main>
+</body>
+</html>
