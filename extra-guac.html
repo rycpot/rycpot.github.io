@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Extra Guac</title>
+  <meta name="description" content="Twenty tools for the page you're on, in one Chrome side panel: screenshots, text from image, privacy blur, dark mode, auto-refresh and more.">
+  <link rel="icon" href="extra-guac-icon.png">
+  <style>
+    :root { --bg: #fbfaf6; --card: #ffffff; --text: #1d1f1a; --muted: #5d6356; --line: #e4e6dc; --accent: #4f7a28; --accent-bg: #eef4e4; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #121411; --card: #1a1d18; --text: #e9ece4; --muted: #a2a99a; --line: #2b3027; --accent: #a4d46a; --accent-bg: #1f2a17; }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    main { max-width: 760px; margin: 0 auto; padding: 56px 16px 64px; }
+    header { display: flex; align-items: center; gap: 18px; }
+    header img { width: 72px; height: 72px; flex: none; }
+    h1 { margin: 0; font-size: 34px; line-height: 1.15; letter-spacing: -.01em; }
+    .tagline { margin: 4px 0 0; color: var(--muted); }
+    .cta { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    .btn { display: inline-block; padding: 10px 18px; border-radius: 10px; text-decoration: none; font-weight: 600; }
+    .btn.primary { background: var(--accent); color: var(--bg); }
+    .btn.ghost { border: 1px solid var(--line); color: var(--text); }
+    .btn:hover { filter: brightness(1.08); }
+    h2 { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 40px 0 12px; }
+    ul.tools { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 8px; }
+    ul.tools li { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+    ul.tools b { display: block; }
+    ul.tools span { color: var(--muted); font-size: 14.5px; }
+    .privacy { background: var(--accent-bg); border-radius: 14px; padding: 18px 20px; }
+    .privacy p { margin: 0 0 8px; }
+    .privacy p:last-child { margin: 0; }
+    a { color: var(--accent); }
+    footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="extra-guac-icon.png" alt="" width="72" height="72">
+    <div>
+      <h1>Extra Guac</h1>
+      <p class="tagline">Twenty tools for the page you're on, in one side panel. We may have gotten carried away.</p>
+    </div>
+  </header>
+
+  <div class="cta">
+    <a class="btn primary" href="https://chromewebstore.google.com/detail/extra-guac/kgaeicakljpjmpeacalbmfbcmlpploni">Add to Chrome</a>
+    <a class="btn ghost" href="extraguac">Privacy policy</a>
+  </div>
+
+  <h2>What's inside</h2>
+  <ul class="tools">
+    <li><b>Screenshot</b><span>a dragged area, the visible part of the tab, or the full page</span></li>
+    <li><b>Text from image</b><span>drag over any text on screen; it's read and copied</span></li>
+    <li><b>Privacy blur</b><span>hides emails, phone numbers and other personal data on screen</span></li>
+    <li><b>Dark mode</b><span>on every site, or only the ones you pick</span></li>
+    <li><b>Refresh</b><span>hard refresh, or nuke a site's cookies, storage and cache</span></li>
+    <li><b>Auto-refresh</b><span>on a fixed or random timer, with an alert when your keywords appear</span></li>
+    <li><b>URL shorten</b><span>with cutt.ly, TinyURL or Dub, copied right away</span></li>
+    <li><b>Volume</b><span>turn down one noisy tab</span></li>
+    <li><b>Awake</b><span>keep the screen on for a set time, or until you say stop</span></li>
+    <li><b>URL auto redirect</b><span>rewrite addresses with your own rules</span></li>
+    <li><b>Highlight words</b><span>neon marks for words you care about, on every site or per site</span></li>
+    <li><b>Remove elements</b><span>click away clutter; it stays gone on that site</span></li>
+    <li><b>Clipboard history</b><span>search and pin text you copy on web pages</span></li>
+    <li><b>Copy &amp; right-click</b><span>unlock sites that block them, one site at a time</span></li>
+    <li><b>Zoom &amp; rotate images</b><span>hold a key and scroll over any image</span></li>
+    <li><b>Save images on click</b><span>hold a key and click; save as is, PNG, JPG or WebP</span></li>
+    <li><b>Upload images</b><span>right-click to upload to ImgLink or x02, link copied</span></li>
+    <li><b>What color?</b><span>copy the colour of any pixel on the page</span></li>
+    <li><b>What font?</b><span>find the real name of any font on the page</span></li>
+    <li><b>What element?</b><span>copy an element's CSS or XPath selector</span></li>
+  </ul>
+
+  <h2>Privacy</h2>
+  <div class="privacy">
+    <p>Everything stays in your browser. There are no accounts, no analytics and no server of ours.</p>
+    <p>Data leaves your browser only when you use a tool that needs an outside service you chose (a link shortener, an image
+      host, text recognition, or a backup to your own Google Drive), and it goes only to that service. Tools that record
+      anything are off until you turn them on. <a href="extraguac">Read the full privacy policy</a>.</p>
+  </div>
+
+  <footer>
+    <span>Extra Guac, a Chrome extension</span>
+    <a href="https://chromewebstore.google.com/detail/extra-guac/kgaeicakljpjmpeacalbmfbcmlpploni">Chrome Web Store</a>
+    <a href="extraguac">Privacy policy</a>
+  </footer>
+</main>
+</body>
+</html>
