@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Extra Guac</title>
+  <meta name="description" content="25+ tools for the page you're on, in one Chrome side panel: screenshots, text from image, privacy blur, dark mode, auto-refresh, QR codes and more.">
+  <link rel="icon" href="icon.png">
+  <style>
+    :root { --bg: #fbfaf6; --card: #ffffff; --text: #1d1f1a; --muted: #5d6356; --line: #e4e6dc; --accent: #4f7a28; --accent-bg: #eef4e4; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #121411; --card: #1a1d18; --text: #e9ece4; --muted: #a2a99a; --line: #2b3027; --accent: #a4d46a; --accent-bg: #1f2a17; }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    main { max-width: 760px; margin: 0 auto; padding: 56px 16px 64px; }
+    header { display: flex; align-items: center; gap: 18px; }
+    header img { width: 72px; height: 72px; flex: none; }
+    h1 { margin: 0; font-size: 34px; line-height: 1.15; letter-spacing: -.01em; }
+    .tagline { margin: 4px 0 0; color: var(--muted); }
+    .cta { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+    h2 { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 40px 0 12px; }
+    ul.tools { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 8px; }
+    ul.tools li { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+    ul.tools b { display: block; }
+    ul.tools span { color: var(--muted); font-size: 14.5px; }
+    .privacy { background: var(--accent-bg); border-radius: 14px; padding: 18px 20px; }
+    .privacy p { margin: 0 0 8px; }
+    .privacy p:last-child { margin: 0; }
+    a { color: var(--accent); }
+    ul.tools li { display: flex; gap: 12px; align-items: flex-start; }
+    ul.tools .ic { width: 20px; height: 20px; flex: none; margin-top: 2px; color: var(--accent); fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    ul.tools img.ic { width: 20px; height: 12.5px; margin-top: 6px; }
+    .shots { display: grid; gap: 14px; margin-bottom: 8px; }
+    .shots img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); }
+    .cta { align-items: center; }
+    .badge { display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px 8px 12px; border-radius: 10px; background: #111; color: #fff; border: 1px solid #333; text-decoration: none; }
+    .badge:hover { filter: brightness(1.25); }
+    .badge img { width: 30px; height: 30px; flex: none; }
+    .badge span { display: flex; flex-direction: column; line-height: 1.15; }
+    .badge small { font-size: 11px; opacity: .8; }
+    .badge b { font-size: 16px; }
+    .tlink { display: inline-flex; align-items: center; gap: 6px; padding: 8px 10px; font-weight: 600; color: var(--text); text-decoration: none; }
+    .tlink:hover { color: var(--accent); }
+    .tlink .tsub { font-weight: 500; color: var(--muted); }
+    .tlink .bi { width: 18px; height: 18px; flex: none; }
+    .tlink .ext { width: 14px; height: 14px; opacity: .6; }
+    .bi.line { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  </style>
+</head>
+<body>
+<main>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-beam" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M7.8 7.8a6 6 0 0 0 0 8.4M16.2 16.2a6 6 0 0 0 0-8.4"/><path d="M5 5a10 10 0 0 0 0 14M19 19a10 10 0 0 0 0-14"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24"><rect x="3" y="6.5" width="18" height="13" rx="2"/><path d="M8.5 6.5 10 4h4l1.5 2.5"/><circle cx="12" cy="13" r="3.2"/></symbol>
+    <symbol id="i-clipboard" viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16.5" rx="2"/><path d="M9 4.5V3.5h6v1"/><path d="M9 10h6M9 13.5h6M9 17h4"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18.5a4.5 4.5 0 0 1-.6-9 6 6 0 0 1 11.5 1.6A3.8 3.8 0 0 1 17.5 18.5z"/><path d="M12 15.5v-5M9.8 12.6 12 10.4l2.2 2.2"/></symbol>
+    <symbol id="i-contrast" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17a8.5 8.5 0 0 0 0-17z" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-dropper" viewBox="0 0 24 24"><path d="m2 22 1-1h3l9-9"/><path d="M3 21v-3l9-9"/><path d="m15 6 3.4-3.4a2.1 2.1 0 1 1 3 3L18 9l.4.4a2.1 2.1 0 1 1-3 3l-3.8-3.8a2.1 2.1 0 1 1 3-3l.4.4z"/></symbol>
+    <symbol id="i-eraser" viewBox="0 0 24 24"><path d="M8.5 20H20"/><path d="m4.6 15.4 9.8-9.8a2 2 0 0 1 2.8 0l2.2 2.2a2 2 0 0 1 0 2.8L11 19.1a3 3 0 0 1-4.2 0l-2.2-2.1a1.1 1.1 0 0 1 0-1.6z"/><path d="m9.5 10.5 5 5"/></symbol>
+    <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M3 3l18 18"/><path d="M10.6 5.1A9.5 9.5 0 0 1 21 12a14 14 0 0 1-2.6 3.4M6.6 6.6A14 14 0 0 0 3 12a9.5 9.5 0 0 0 12.4 5.4"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></symbol>
+    <symbol id="i-focus" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/><circle cx="12" cy="12" r="2.2"/></symbol>
+    <symbol id="i-font" viewBox="0 0 24 24"><path d="M3 19 8.5 5h1L15 19M5.2 14.5h7.6"/><path d="M15.5 12.2a3 3 0 0 1 5.5 1.6V19M21 15.6c-3.8-.2-5.7.6-5.7 2 0 1 .8 1.6 1.9 1.6 1.8 0 3.8-1.3 3.8-3.6"/></symbol>
+    <symbol id="i-imgdl" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="2.5"/><circle cx="9" cy="9" r="1.6"/><path d="M20.5 14.5 16 10l-5.5 5.5"/><path d="M12 13v7M9.5 17.5 12 20l2.5-2.5"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/></symbol>
+    <symbol id="i-marker" viewBox="0 0 24 24"><path d="m9 11-5.5 5.5V20h3.5l5.5-5.5"/><path d="m9 11 6.5-6.5a2.1 2.1 0 0 1 3 0l1 1a2.1 2.1 0 0 1 0 3L13 15z"/><path d="M14 21h6"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></symbol>
+    <symbol id="i-newtab" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-8 8"/><path d="M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10"/></symbol>
+    <symbol id="i-note" viewBox="0 0 24 24"><path d="M5 4.5h14v15H5z"/><path d="M8.5 9h7M8.5 12.5h7M8.5 16h4"/></symbol>
+    <symbol id="i-ocr" viewBox="0 0 24 24"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"/><path d="M8.5 8.5h7M12 8.5v7"/></symbol>
+    <symbol id="i-pointer" viewBox="0 0 24 24"><path d="M4 4l6.5 16 2.3-6.7L19.5 11z"/><path d="M13 13l6 6"/></symbol>
+    <symbol id="i-qr" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><path d="M14 14h2.5v2.5M20 14v.01M14 20h.01M17.5 17.5V20H20v-2.5"/></symbol>
+    <symbol id="i-redirect" viewBox="0 0 24 24"><path d="M4 7h11a4 4 0 0 1 0 8H8"/><path d="M11 12l-3 3 3 3"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></symbol>
+    <symbol id="i-timer" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 9.5v4l2.5 1.5M9.5 2.5h5"/></symbol>
+    <symbol id="i-unlock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 7.7-1.5"/><path d="M12 14.5v2"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="2.5"/><circle cx="9" cy="9" r="1.6"/><path d="M20.5 15l-5-5L5 20.5"/></symbol>
+    <symbol id="i-volume" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></symbol>
+    <symbol id="i-zoom" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8M10.5 8v5M8 10.5h5"/></symbol>
+  </svg>
+  <header>
+    <img src="icon.png" alt="" width="72" height="72">
+    <div>
+      <h1>Extra Guac</h1>
+      <p class="tagline">25+ tools for the page you're on, in one side panel. We may have gotten carried away.</p>
+    </div>
+  </header>
+
+  <div class="cta">
+    <a target="_blank" rel="noopener" class="badge" href="https://chromewebstore.google.com/detail/extra-guac/kgaeicakljpjmpeacalbmfbcmlpploni"><img src="webstore.svg" alt=""><span><small>Available in the</small><b>Chrome Web Store</b></span></a>
+    <a target="_blank" rel="noopener" class="tlink" href="https://github.com/rycpot/extra-guac"><svg class="bi" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub<span class="tsub">· open source</span><svg class="bi line ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+    <a target="_blank" rel="noopener" class="tlink" href="privacy"><svg class="bi line" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6L12 3z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg>Privacy policy<svg class="bi line ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+  </div>
+
+  <h2>What's inside</h2>
+  <ul class="tools">
+    <li><svg class="ic"><use href="#i-camera"/></svg><div><b>Screenshot</b><span>a dragged area, the visible tab or the full page, with an editor to mark it up, blur parts or remove the background</span></div></li>
+    <li><svg class="ic"><use href="#i-ocr"/></svg><div><b>Text from image</b><span>drag over any text on screen; it's read and copied</span></div></li>
+    <li><svg class="ic"><use href="#i-eye-off"/></svg><div><b>Privacy blur</b><span>hides emails, phone numbers and other personal data on screen</span></div></li>
+    <li><svg class="ic"><use href="#i-note"/></svg><div><b>Scratch pads</b><span>six pads that save as you type, in rich or plain text</span></div></li>
+    <li><svg class="ic"><use href="#i-refresh"/></svg><div><b>Refresh</b><span>hard refresh, or nuke a site's cookies, storage and cache</span></div></li>
+    <li><svg class="ic"><use href="#i-timer"/></svg><div><b>Auto-refresh</b><span>on a fixed or random timer, with an alert when your keywords appear</span></div></li>
+    <li><svg class="ic"><use href="#i-link"/></svg><div><b>URL shorten</b><span>with x.gd, spoo.me or dub.sh, copied right away</span></div></li>
+    <li><svg class="ic"><use href="#i-qr"/></svg><div><b>QR code</b><span>for a page, link or text, static or dynamic, with your own icon in the middle</span></div></li>
+    <li><svg class="ic"><use href="#i-volume"/></svg><div><b>Tab volume</b><span>turn down one noisy tab</span></div></li>
+    <li><img class="ic" src="proxy.svg" alt=""><div><b>Proxy</b><span>open the sites you pick through your own Webshare proxies, in the country you choose</span></div></li>
+    <li><svg class="ic"><use href="#i-moon"/></svg><div><b>Awake</b><span>keep the screen on for a set time, or until you say stop</span></div></li>
+    <li><svg class="ic"><use href="#i-marker"/></svg><div><b>Highlight words</b><span>neon marks for words you care about, on every site or per site</span></div></li>
+    <li><svg class="ic"><use href="#i-clipboard"/></svg><div><b>Clipboard history</b><span>search and pin text you copy on web pages</span></div></li>
+    <li><svg class="ic"><use href="#i-unlock"/></svg><div><b>Enable copy &amp; right-click</b><span>unlock sites that block them, one site at a time</span></div></li>
+    <li><svg class="ic"><use href="#i-dropper"/></svg><div><b>What color?</b><span>copy the color of any pixel on the page</span></div></li>
+    <li><svg class="ic"><use href="#i-pointer"/></svg><div><b>What element?</b><span>copy an element's CSS or XPath selector</span></div></li>
+    <li><svg class="ic"><use href="#i-font"/></svg><div><b>What font?</b><span>find the real name of any font on the page</span></div></li>
+    <li><svg class="ic"><use href="#i-zoom"/></svg><div><b>Zoom &amp; rotate images</b><span>hold a key and scroll over any image</span></div></li>
+    <li><svg class="ic"><use href="#i-imgdl"/></svg><div><b>Save images on click</b><span>hold a key and click; save as is, PNG, JPG or WebP</span></div></li>
+    <li><svg class="ic"><use href="#i-upload"/></svg><div><b>Upload images</b><span>right-click to upload to ImgLink or X02, link copied</span></div></li>
+    <li><svg class="ic"><use href="#i-contrast"/></svg><div><b>Dark mode</b><span>on every site, or only the ones you pick</span></div></li>
+    <li><svg class="ic"><use href="#i-eraser"/></svg><div><b>Remove elements</b><span>click away clutter; it stays gone on that site</span></div></li>
+    <li><svg class="ic"><use href="#i-newtab"/></svg><div><b>Open other site URLs in new tab</b><span>links leaving a site open in a new tab, on the sites you pick</span></div></li>
+    <li><svg class="ic"><use href="#i-redirect"/></svg><div><b>URL auto redirect</b><span>rewrite addresses with your own rules</span></div></li>
+    <li><svg class="ic"><use href="#i-focus"/></svg><div><b>Refresh on focus</b><span>reload a page when you come back to it</span></div></li>
+    <li><svg class="ic"><use href="#i-cloud"/></svg><div><b>Drive backup</b><span>snapshots of your settings and data to your own Google Drive</span></div></li>
+    <li><svg class="ic"><use href="#i-beam"/></svg><div><b>Beam</b><span>send files between your devices with a 6-digit code, encrypted end to end; the other device can use Extra Guac too, or <a target="_blank" rel="noopener" href="../beam/">rycpot.github.io/beam</a> in any browser</span></div></li>
+  </ul>
+
+  <h2>Privacy</h2>
+  <div class="privacy">
+    <p>Everything stays in your browser. There are no accounts, no analytics and no server of ours.</p>
+    <p>Data leaves your browser only when you use a tool that needs an outside service you chose (a link shortener, an image
+      host, text recognition, a proxy, a backup to your own Google Drive, or Beam's connection service and relays,
+      which only see your files encrypted), and it goes only to that service. Tools that record
+      anything are off until you turn them on. <a target="_blank" rel="noopener" href="privacy">Read the full privacy policy</a>.</p>
+    <p>The code is open source (<a target="_blank" rel="noopener" href="https://github.com/rycpot/extra-guac/blob/main/LICENSE">0BSD</a>) on <a target="_blank" rel="noopener" href="https://github.com/rycpot/extra-guac">GitHub</a>, so you can check all of this yourself.</p>
+  </div>
+
+  <h2>Screenshots</h2>
+  <div class="shots">
+    <a target="_blank" rel="noopener" href="https://imglink.cc/cdn/KMLRslW1FC.png"><img src="https://imglink.cc/cdn/KMLRslW1FC.png" alt="Extra Guac screenshot 1" loading="lazy"></a>
+    <a target="_blank" rel="noopener" href="https://imglink.cc/cdn/iPptfB4shl.png"><img src="https://imglink.cc/cdn/iPptfB4shl.png" alt="Extra Guac screenshot 2" loading="lazy"></a>
+    <a target="_blank" rel="noopener" href="https://imglink.cc/cdn/0VBfI2CYmj.png"><img src="https://imglink.cc/cdn/0VBfI2CYmj.png" alt="Extra Guac screenshot 3" loading="lazy"></a>
+    <a target="_blank" rel="noopener" href="https://imglink.cc/cdn/DyVAe-FlMh.png"><img src="https://imglink.cc/cdn/DyVAe-FlMh.png" alt="Extra Guac screenshot 4" loading="lazy"></a>
+    <a target="_blank" rel="noopener" href="https://imglink.cc/cdn/8DWl5KVcB7.png"><img src="https://imglink.cc/cdn/8DWl5KVcB7.png" alt="Extra Guac screenshot 5" loading="lazy"></a>
+    <a target="_blank" rel="noopener" href="https://imglink.cc/cdn/3bkb8dNuRR.png"><img src="https://imglink.cc/cdn/3bkb8dNuRR.png" alt="Extra Guac screenshot 6" loading="lazy"></a>
+    <a target="_blank" rel="noopener" href="https://imglink.cc/cdn/ivK8v2HTRG.png"><img src="https://imglink.cc/cdn/ivK8v2HTRG.png" alt="Extra Guac screenshot 7" loading="lazy"></a>
+    <a target="_blank" rel="noopener" href="https://imglink.cc/cdn/mGvr4vrnPm.png"><img src="https://imglink.cc/cdn/mGvr4vrnPm.png" alt="Extra Guac screenshot 8" loading="lazy"></a>
+    <a target="_blank" rel="noopener" href="https://imglink.cc/cdn/N9g45oLPjN.png"><img src="https://imglink.cc/cdn/N9g45oLPjN.png" alt="Extra Guac screenshot 9" loading="lazy"></a>
+    <a target="_blank" rel="noopener" href="https://imglink.cc/cdn/K_ptEAbLZr.png"><img src="https://imglink.cc/cdn/K_ptEAbLZr.png" alt="Extra Guac screenshot 10" loading="lazy"></a>
+  </div>
+</main>
+</body>
+</html>
