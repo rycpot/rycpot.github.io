@@ -28,7 +28,7 @@ const MAX_DEVICES = 5
 const IS_EXTENSION = location.protocol === 'chrome-extension:'
 // Which Extra Guac release this Beam is: the extension's own version, or, on the web page, the
 // one the release wrote here when it published the page (empty in a copy run from the repository).
-const RELEASE = '268'
+const RELEASE = '269'
 // The usage mark: two green arrows, one each way; this month's figures show on hover or a tap.
 const ICON_GAUGE = '<svg class="beam-gauge" viewBox="16 16 480 480" aria-hidden="true"><path d="M40 106H318V32L468 139 318 248V172H40ZM472 340H194V264L44 373 194 482V406H472Z" fill="#4caf50" stroke="#4caf50" stroke-width="32" stroke-linejoin="round"/></svg>'
 // The version mark's icon: a green dome with two eyes and two antennae.
@@ -1339,6 +1339,21 @@ function showPath(L, v, via) {
   }
 }
 
+// Whether two addresses are on one local network: the same IPv6 /64 (a home network's own
+// prefix) or the same IPv4 /24. A name or an unknown address never is.
+function sameNetwork(a, b) {
+  const v6 = s => {
+    if (!s.includes(':')) return null
+    const [head, tail = ''] = s.toLowerCase().split('%')[0].split('::')
+    const h = head ? head.split(':') : [], t = tail ? tail.split(':') : []
+    if (!s.includes('::') && h.length !== 8) return null
+    return [...h, ...Array(8 - h.length - t.length).fill('0'), ...t].slice(0, 4).map(x => parseInt(x, 16)).join(':')
+  }
+  const v4 = s => /^\d+\.\d+\.\d+\.\d+$/.test(s) ? s.split('.').slice(0, 3).join('.') : null
+  const pa = v6(a) || v4(a), pb = v6(b) || v4(b)
+  return !!pa && pa === pb
+}
+
 async function checkPath(L, c, gen, tries) {
   const pc = c && c.peerConnection
   if (!pc || gen !== generation || L.lanes[0] !== c) return
@@ -1355,8 +1370,10 @@ async function checkPath(L, c, gen, tries) {
       const via = l.candidateType === 'relay' ? relayName(l.url || '') : ''
       const addr = (r && (r.address || r.ip)) || ''
       const privateAddr = /^(10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.|169\.254\.|fe80:|fc|fd)/i.test(addr) || /\.local$/i.test(addr)
-      const rType = r ? r.candidateType : ''
-      const lan = privateAddr || (l.candidateType === 'host' && (rType === 'host' || rType === 'prflx'))
+      // A device's own (host) address isn't proof of a shared Wi-Fi: on IPv6, a phone on mobile
+      // data and a computer on Wi-Fi often both have public addresses and reach each other over
+      // the internet. Two public addresses count as the same network only when they share it.
+      const lan = privateAddr || sameNetwork((l.address || l.ip) || '', addr)
       showPath(L, relay ? 'relay' : lan ? 'lan' : 'internet', via)
       sendCtl(L, {t: 'path', v: L.path, via: L.relayName || undefined})
       return
