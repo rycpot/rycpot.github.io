@@ -28,7 +28,7 @@ const MAX_DEVICES = 5
 const IS_EXTENSION = location.protocol === 'chrome-extension:'
 // Which Extra Guac release this Beam is: the extension's own version, or, on the web page, the
 // one the release wrote here when it published the page (empty in a copy run from the repository).
-const RELEASE = '290'
+const RELEASE = '291'
 // The usage mark: two green arrows, one each way; this month's figures show on hover or a tap.
 const ICON_GAUGE = '<svg class="beam-gauge" viewBox="16 16 480 480" aria-hidden="true"><path d="M40 106H318V32L468 139 318 248V172H40ZM472 340H194V264L44 373 194 482V406H472Z" fill="#4caf50" stroke="#4caf50" stroke-width="32" stroke-linejoin="round"/></svg>'
 // The version mark's icon: a green dome with two eyes and two antennae.
@@ -169,7 +169,7 @@ function markup(preview) {
   </section>
 
   <section class="beam-card beam-chat off" id="beam-chat" aria-label="Chat">
-    <div class="beam-row beam-between beam-chat-head"><div class="beam-chat-who"><p class="beam-eyebrow">Chat as</p><button type="button" class="beam-me" id="beam-me" title="Change the name others see"><span id="beam-meName"></span>${ICON_PEN}</button></div><span class="beam-hint" id="beam-chatNote">Connect a device to chat</span></div>
+    <div class="beam-row beam-between beam-chat-head"><div class="beam-chat-who"><p class="beam-eyebrow">Chat as</p><button type="button" class="beam-me" id="beam-me" title="Change the name others see"><span id="beam-meName"></span>${ICON_PEN}</button></div><span class="beam-hint" id="beam-chatNote">Connect to chat</span></div>
     <div class="beam-msgs" id="beam-msgs" aria-live="polite"></div>
     <form class="beam-compose" id="beam-compose">
       <input type="text" id="beam-chatInput" placeholder="Message" maxlength="500" autocomplete="off" aria-label="Message" disabled>
@@ -575,7 +575,7 @@ function showChat() {
   const c = $('chat')
   if (!on && chatLines.length) { chatLines.length = 0; $('msgs').replaceChildren() }
   c.classList.toggle('off', !on)
-  $('chatNote').textContent = on ? '' : 'Connect a device to chat'
+  $('chatNote').textContent = on ? '' : 'Connect to chat'
   $('chatInput').disabled = !on
   sizeChat()
 }
