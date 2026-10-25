@@ -28,7 +28,7 @@ const MAX_DEVICES = 5
 const IS_EXTENSION = location.protocol === 'chrome-extension:'
 // Which Extra Guac release this Beam is: the extension's own version, or, on the web page, the
 // one the release wrote here when it published the page (empty in a copy run from the repository).
-const RELEASE = '315'
+const RELEASE = '316'
 // The usage mark: two green arrows, one each way; this month's figures show on hover or a tap.
 const ICON_GAUGE = '<svg class="beam-gauge" viewBox="16 16 480 480" aria-hidden="true"><path d="M40 106H318V32L468 139 318 248V172H40ZM472 340H194V264L44 373 194 482V406H472Z" fill="#4caf50" stroke="#4caf50" stroke-width="32" stroke-linejoin="round"/></svg>'
 // The version mark's icon: a green dome with two eyes and two antennae.
